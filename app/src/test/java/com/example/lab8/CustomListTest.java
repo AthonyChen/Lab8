@@ -53,11 +53,22 @@ public class CustomListTest {
         assertEquals(1,list.countCities());
     }
     @Test
+    void testdeleteCities() {
+        list = MockCityList();
+        assertEquals(0, list.getCount());
+        City city = new City("Regina", "Saskatchewan");
+        list.addCity(city);
+        list.delete(city);
+        assertEquals(0, list.getCount());
+
+    }
+    @Test
     void testdeleteCitiesexception() {
         list = MockCityList();
-        City city = new City("Edmonton", "Alberta");
-        list.addCity(city);
-        assertThrows( IllegalArgumentException.class, () -> {list.delete(city); });
+        City city1 = new City("Edmonton", "Alberta");
+        City city2 = new City("Edmonton", "Alberta");
+        list.addCity(city1);
+        assertThrows( IllegalArgumentException.class, () -> {list.delete(city2); });
     }
 
 }
